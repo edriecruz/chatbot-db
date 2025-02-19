@@ -9,7 +9,7 @@ const PORT = 5000;
 // Middleware
 app.use(
     cors({
-      origin: "http://localhost:3000", // Allow requests from your React app
+      origin: "https://chatbot-app.vercel.app", // Replace with your React app's URL
       methods: ["GET", "POST"], // Allow specific HTTP methods
     })
   );
