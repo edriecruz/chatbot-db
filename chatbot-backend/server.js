@@ -9,7 +9,7 @@ const PORT = 5000;
 // Middleware
 app.use(
     cors({
-      origin: "https://chatbot-app.vercel.app", // Replace with your React app's URL
+      origin: "https://chatbot-db.vercel.app", // Replace with your React app's URL
       methods: ["GET", "POST"], // Allow specific HTTP methods
     })
   );
