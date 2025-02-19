@@ -7,6 +7,7 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [username, setUsername] = useState("");
   const [registered, setRegistered] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   // Fetch messages on component mount
   useEffect(() => {
@@ -18,7 +19,7 @@ const Chatbot = () => {
   // Fetch all messages
   const fetchMessages = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/messages");
+      const response = await axios.get(`${API_URL}/api/messages`);
       setMessages(response.data);
     } catch (error) {
       console.error("Failed to fetch messages", error);
@@ -30,7 +31,7 @@ const Chatbot = () => {
     if (username.trim() === "") return;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/register", { username });
+      const response = await axios.post(`${API_URL}/api/register`, { username });
       alert(response.data.message); // Notify user of successful registration
       setRegistered(true);
     } catch (error) {
@@ -48,7 +49,7 @@ const Chatbot = () => {
 
     try {
       const message = { text: input, sender: username };
-      await axios.post("http://localhost:5000/api/messages", message);
+      await axios.post(`${API_URL}/api/messages`, message);
       setInput("");
       fetchMessages(); // Refresh messages
     } catch (error) {
