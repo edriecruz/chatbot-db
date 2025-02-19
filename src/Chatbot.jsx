@@ -13,6 +13,7 @@ const Chatbot = () => {
   // Fetch messages on component mount
   useEffect(() => {
     if (registered) {
+      console.log("Fetching messages...");
       fetchMessages();
     }
   }, [registered]);
