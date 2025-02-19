@@ -4,15 +4,16 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-// Middleware
+const cors = require("cors");
+
 app.use(
-    cors({
-      origin: "https://chatbot-db.vercel.app", // Replace with your React app's URL
-      methods: ["GET", "POST"], // Allow specific HTTP methods
-    })
-  );
+  cors({
+    origin: "https://chatbot-app.vercel.app", // Replace with your React app's URL
+    methods: ["GET", "POST"],
+  })
+);
 app.use(bodyParser.json());
 
 // Connect to MongoDB
