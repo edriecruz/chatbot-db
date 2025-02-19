@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 
+// CORS configuration
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -18,10 +19,12 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"], // Include OPTIONS for preflight requests
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+    credentials: true, // Allow credentials (if needed)
   })
 );
-app.use(bodyParser.json());
+
 
 // Connect to MongoDB
 mongoose
@@ -74,6 +77,11 @@ app.post("/api/messages", async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: "Failed to save message" });
   }
+});
+
+// Your routes
+app.post("/api/register", (req, res) => {
+  res.json({ message: "User registered successfully" });
 });
 
 // API to fetch all messages
