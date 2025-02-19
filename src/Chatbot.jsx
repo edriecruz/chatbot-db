@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Chatbot.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [username, setUsername] = useState("");
   const [registered, setRegistered] = useState(false);
-  const API_URL = process.env.REACT_APP_API_URL;
 
   // Fetch messages on component mount
   useEffect(() => {
